@@ -1,0 +1,11 @@
+.DS_Store
+projects/.DS_Store
+evals/*
+tests/*
+projects/ring1/libft/.git/*
+projects/ring2/ft_printf/.git/*
+projects/ring2/get_next_line/.git/*
+projects/ring2/born2beroot/.git/*
+projects/*/*/.gitignore
+projects/*/*/.DS_Store
+projects/ring2/get_next_line/.gitignore
