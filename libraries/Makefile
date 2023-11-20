@@ -6,11 +6,11 @@
 #    By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 15:21:13 by ikhadem           #+#    #+#              #
-#    Updated: 2023/11/15 16:09:16 by escura           ###   ########.fr        #
+#    Updated: 2023/11/20 14:17:42 by escura           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = privlib.a
+NAME = lib.a
 SRC_DIR = ./src
 OBJ_DIR = ./objs
 

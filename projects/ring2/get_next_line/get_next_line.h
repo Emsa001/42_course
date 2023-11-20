@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:11:41 by escura            #+#    #+#             */
-/*   Updated: 2023/11/17 17:14:23 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/20 14:51:21 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,9 @@ typedef struct s_list
 
 int					found_newline(t_list *list);
 t_list				*find_last_node(t_list *list);
-char				*get_line(t_list *list);
 void				copy_str(t_list *list, char *str);
 int					len_to_newline(t_list *list);
-void				polish_list(t_list **list);
 char				*get_next_line(int fd);
 void				dealloc(t_list **list, t_list *clean_node, char *buf);
-void				create_list(t_list **list, int fd);
 
 #endif

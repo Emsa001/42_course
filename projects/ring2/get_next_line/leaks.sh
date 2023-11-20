@@ -1,1 +1,0 @@
-cc ./test.c ./get_next_line.c ./get_next_line_utils.c -D BUFFER_SIZE=10 && leaks --atExit -- ./a.out && rm ./a.out

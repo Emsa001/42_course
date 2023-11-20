@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:41:25 by escura            #+#    #+#             */
-/*   Updated: 2023/11/17 17:13:47 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/20 14:52:33 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ t_list	*find_last_node(t_list *list)
 	return (list);
 }
 
-/*
- * Copy (string\n]
-*/
 void	copy_str(t_list *list, char *str)
 {
 	int	i;
@@ -70,10 +67,6 @@ void	copy_str(t_list *list, char *str)
 	str[k] = '\0';
 }
 
-/*
- * find the len to new line in
- * my linked list
-*/
 int	len_to_newline(t_list *list)
 {
 	int	i;
@@ -96,14 +89,10 @@ int	len_to_newline(t_list *list)
 			++len;
 		}
 		list = list->next;
-	}	
+	}
 	return (len);
 }
 
-/*
- * dealloc all from head
- * set heat->NULL
-*/
 void	dealloc(t_list **list, t_list *clean_node, char *buf)
 {
 	t_list	*tmp;

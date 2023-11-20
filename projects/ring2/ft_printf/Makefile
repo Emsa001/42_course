@@ -41,7 +41,7 @@ re: fclean all
 # test:
 # 	make
 # 	clear
-# 	$(CC) $(SRC_DIR)/main.c -o ./my_program $(NAME) ../../libraries/privlib.a && ./my_program
+# 	$(CC) $(SRC_DIR)/main.c -o ./my_program $(NAME) ../../libraries/lib.a && ./my_program
 
 # norm:
 # 	norminette $(SRC_DIR)/ft_*.c $(SRC_DIR)/ft_printf.h

@@ -1,0 +1,4 @@
+This is a sample text file.
+It has multiple lines.
+Each line ends with a newline character.
+The last line does not have a newline character.
