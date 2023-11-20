@@ -5,102 +5,79 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 13:07:51 by escura            #+#    #+#             */
-/*   Updated: 2023/11/20 14:58:14 by escura           ###   ########.fr       */
+/*   Created: 2023/11/20 15:12:40 by escura            #+#    #+#             */
+/*   Updated: 2023/11/20 17:39:31 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	clean_list(t_list **list)
+static char	*get_line(int fd, char *buf, char *total_buffer)
 {
-	t_list	*last_node;
-	t_list	*clean_node;
-	int		i;
-	int		k;
-	char	*buf;
+	int		read_line;
+	char	*char_temp;
 
-	buf = malloc(BUFFER_SIZE + 1);
-	clean_node = malloc(sizeof(t_list));
-	if (buf == NULL|| clean_node == NULL)
-		return ;
-	last_node = find_last_node(*list);
-	i = 0;
-	k = 0;
-	while (last_node->str_buf[i] && last_node->str_buf[i] != '\n')
-		i++;
-	while (last_node->str_buf[i] && last_node->str_buf[++i])
-		buf[k++] = last_node->str_buf[i];
-	buf[k] = '\0';
-	clean_node->str_buf = buf;
-	clean_node->next = NULL;
-	dealloc(list, clean_node, buf);
-}
-
-static char	*get_line(t_list *list)
-{
-	int		str_len;
-	char	*next_str;
-
-	if (list == NULL)
-		return (NULL);
-	str_len = len_to_newline(list);
-	next_str = malloc(str_len + 1);
-	if (next_str == NULL)
-		return (NULL);
-	copy_str(list, next_str);
-	return (next_str);
-}
-
-static void	append(t_list **list, char *buf)
-{
-	t_list	*new_node;
-	t_list	*last_node;
-
-	last_node = find_last_node(*list);
-	new_node = malloc(sizeof(t_list));
-	if (new_node == NULL)
-		return ;
-	if (last_node == NULL)
-		*list = new_node;
-	else
-		last_node->next = new_node;
-	new_node->str_buf = buf;
-	new_node->next = NULL;
-}
-
-static void	create_list(t_list **list, int fd)
-{
-	int		char_read;
-	char	*buf;
-
-	while (!found_newline(*list))
+	read_line = 1;
+	while (read_line != '\0')
 	{
-		buf = malloc(BUFFER_SIZE + 1);
-		if (NULL == buf)
-			return ;
-		char_read = read(fd, buf, BUFFER_SIZE);
-		if (!char_read)
-		{
-			free(buf);
-			return ;
-		}
-		buf[char_read] = '\0';
-		append(list, buf);
+		read_line = read(fd, buf, BUFFER_SIZE);
+		if (read_line == -1)
+			return (NULL);
+		else if (read_line == 0)
+			break ;
+		buf[read_line] = '\0';
+		if (!total_buffer)
+			total_buffer = ft_strdup("");
+		char_temp = total_buffer;
+		total_buffer = ft_strjoin(char_temp, buf);
+		free(char_temp);
+		char_temp = NULL;
+		if (ft_strchr(buf, '\n'))
+			break ;
 	}
+	return (total_buffer);
+}
+
+static char	*extract(char *line)
+{
+	size_t	count;
+	char	*total_buffer;
+
+	count = 0;
+	while (line[count] != '\n' && line[count] != '\0')
+		count++;
+	if (line[count] == '\0')
+		return (NULL);
+	total_buffer = ft_substr(line, count + 1, ft_strlen(line) - count);
+	if (*total_buffer == '\0')
+	{
+		free(total_buffer);
+		return (NULL);
+	}
+	line[count + 1] = '\0';
+	return (total_buffer);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_list	*list = NULL;
-	char			*next_line;
+	char		*line;
+	char		*buffer;
+	static char	*total_buffer;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	create_list(&list, fd);
-	if (list == NULL)
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
 		return (NULL);
-	next_line = get_line(list);
-	clean_list(&list);
-	return (next_line);
+	line = get_line(fd, buffer, total_buffer);
+	free(buffer);
+	buffer = NULL;
+	if (!line || read(fd, buffer, 0) == -1)
+	{
+		free(total_buffer);
+		total_buffer = NULL;
+		return (NULL);
+	}
+	total_buffer = extract(line);
+	return (line);
 }

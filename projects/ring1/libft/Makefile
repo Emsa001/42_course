@@ -6,7 +6,7 @@
 #    By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 15:21:13 by ikhadem           #+#    #+#              #
-#    Updated: 2023/11/18 16:41:32 by escura           ###   ########.fr        #
+#    Updated: 2023/11/20 16:39:20 by escura           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,16 +36,16 @@ fclean: clean
 
 re: fclean all
 
-# t: test
-# n: norm
-# c: clean
+t: test
+n: norm
+c: clean
 
-# test:
-# 	make
-# 	clear
-# 	$(CC) main.c -o ./my_program libft.a && ./my_program
+test:
+	make
+	clear
+	$(CC) main.c -o ./my_program libft.a && ./my_program
 
-# norm:
-# 	norminette ft_*.c libft.h
+norm:
+	norminette ft_*.c libft.h
 
 .PHONY: all clean fclean re bonus

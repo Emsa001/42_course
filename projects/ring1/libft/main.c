@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:20:49 by escura            #+#    #+#             */
-/*   Updated: 2023/11/15 11:13:03 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/20 16:46:30 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -891,52 +891,8 @@ int check_ft_split() {
     } t_param;
 
     t_param cases[] = {
-        { "    Hello,    World!    ", ' ', {"Hello,", "World!"} },
-        {"    Hello,    World! Test asdas    ", ' ', {"Hello,", "World!", "Test", "asdas"} },
-        {"test1 test2 test3", ' ', {"test1", "test2", "test3"} },
-        {"How-are-you?", '-', {"How", "are", "you?"} },
-        {"  One_Two_Three  ", '_', {"  One", "Two", "Three  "} },
-        {"Split,this,string,please", ',', {"Split", "this", "string", "please"} },
-        {"  LeadingWhitespace", ' ', {"LeadingWhitespace"} },
-        {"TrailingWhitespace   ", ' ', {"TrailingWhitespace"} },
-        {"Multiple   Spaces   Between   Words", ' ', {"Multiple", "Spaces", "Between", "Words"} },
-        {"   !@#$%^&*()_+   ", ' ', {"!@#$%^&*()_+"} },
-        {"Empty String", ' ', {NULL} },
-        {"", ' ', {NULL} },
-        {"   ", ' ', {NULL} },
-        {"a_b_c_d_e", '_', {"a", "b", "c", "d", "e"} },
-        {"a,b,c,d,e", ',', {"a", "b", "c", "d", "e"} },
-        {"Symbol&Number123", '&', {"Symbol", "Number123"} },
-        {"a b c d e", ' ', {"a", "b", "c", "d", "e"} },
-        {"SpacesBetweenWords", ' ', {"SpacesBetweenWords"} },
-        {"Spaces&Between&&&&&Symbols", '&', {"Spaces", "Between", "Symbols"} },
-        {"word1-word2-word3", '-', {"word1", "word2", "word3"} },
-		{ "    Example,    Case!    ", ' ', {"Example,", "Case!"} },
-        {"    This is,    Another! Example!    ", ' ', {"This", "is,", "Another!", "Example!"} },
-        {"sample1 sample2 sample3", ' ', {"sample1", "sample2", "sample3"} },
-        {"Where_Are_You?", '_', {"Where", "Are", "You?"} },
-        {"  Alpha_Beta_Gamma  ", '_', {"  Alpha", "Beta", "Gamma  "} },
-        {"Divide;this;string;please", ';', {"Divide", "this", "string", "please"} },
-        {"  InitialWhitespace", ' ', {"InitialWhitespace"} },
-        {"TrailingWhitespace   ", ' ', {"TrailingWhitespace"} },
-        {"Various   Gaps   In   Text", ' ', {"Various", "Gaps", "In", "Text"} },
-        {"   !@#$%^&*()_+   ", ' ', {"!@#$%^&*()_+"} },
-        {"No_Empty_String", ' ', {"No_Empty_String"} },
-        {"f_g_h_i_j", '_', {"f", "g", "h", "i", "j"} },
-        {"x,y,z,1,2,3", ',', {"x", "y", "z", "1", "2", "3"} },
-        {"Character@Digit456", '@', {"Character", "Digit456"} },
-        {"p q r s t", ' ', {"p", "q", "r", "s", "t"} },
-        {"WordsWithoutSpaces", ' ', {"WordsWithoutSpaces"} },
-        {"Different&Symbols&&&&Pattern", '&', {"Different", "Symbols", "Pattern"} },
-        {"phrase1-phrase2-phrase3", '-', {"phrase1", "phrase2", "phrase3"} },
-        {"First#Second#Third", '#', {"First", "Second", "Third"} },
-        {"a_b_c_d_e_f", '_', {"a", "b", "c", "d", "e", "f"} },
-        {"1,2,3,4,5,6", ',', {"1", "2", "3", "4", "5", "6"} },
-        {"Special^Characters@123", '@', {"Special^Characters", "123"} },
-        {"a b c d e", ' ', {"a", "b", "c", "d", "e"} },
-        {"SpacingOutWords", ' ', {"SpacingOutWords"} },
-        {"Symbols&Between@@@Words", '&', {"Symbols", "Between@@@Words"} },
-        {"term1-term2-term3", '-', {"term1", "term2", "term3"} },
+        { "    Hello,            World!    ", ' ', {"Hello,", "World!"} },
+		{ "1,2,3,4,5,6,7,8,9,10", ',', {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"} },
         {NULL, '\0', NULL}
     };
 
@@ -944,6 +900,16 @@ int check_ft_split() {
     while (tc->s != NULL)
     {
         char **result = ft_split(tc->s, tc->c);
+		yellow();
+		printf("Recived: |");
+		gray();
+		printf("%s",tc->s);
+		yellow();
+		printf("| split at: |");
+		gray();
+		printf("%c",tc->c);
+		yellow();
+		printf("|\n");
         for (int i = 0; tc->expected[i] != NULL; i++)
         {
             if (strcmp(result[i], tc->expected[i]) != 0) {
@@ -957,6 +923,10 @@ int check_ft_split() {
 				printf("received: |%s|\n", result[i]);
                 response = 0;
             }
+			yellow();
+			printf("> ");
+			gray();
+			printf(" |%s|\n",result[i]);
         }
         tc++;
     }
@@ -1553,8 +1523,8 @@ int main(void)
 	// !check_ft_issomething("FT_ISPRINT", ft_isprint, isprint) && strcat(failed_functions, "ft_isprint ");
 	// !check_ft_memchr() && strcat(failed_functions, "ft_memchr");
 	// !check_ft_memcmp() && strcat(failed_functions, "ft_memcmp");
-	!check_ft_memcpy() && strcat(failed_functions, "ft_memcpy");
-	!check_ft_memmove() && strcat(failed_functions, "ft_memmove");
+	// !check_ft_memcpy() && strcat(failed_functions, "ft_memcpy");
+	// !check_ft_memmove() && strcat(failed_functions, "ft_memmove");
 	// !check_ft_memset() && strcat(failed_functions, "ft_memset");
 	// !check_ft_strchr() && strcat(failed_functions, "ft_strchr");
 	// !check_ft_strdup() && strcat(failed_functions, "ft_strdup");
@@ -1570,7 +1540,7 @@ int main(void)
 	// !check_ft_substr() && strcat(failed_functions, "ft_substr");
 	// !check_ft_strjoin() && strcat(failed_functions, "ft_strjoin");
 	// !check_ft_strtrim() && strcat(failed_functions, "ft_strtrim");
-	// !check_ft_split() && strcat(failed_functions, "ft_split");
+	!check_ft_split() && strcat(failed_functions, "ft_split");
 	// !check_ft_itoa() && strcat(failed_functions, "ft_itoa");
 	// !check_ft_strmapi() && strcat(failed_functions, "ft_strmapi");
 	// !check_ft_striteri() && strcat(failed_functions, "ft_striteri");

@@ -6,13 +6,14 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:07:34 by escura            #+#    #+#             */
-/*   Updated: 2023/11/20 14:34:07 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/20 15:16:34 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../../libraries/lib.h"
 #include "get_next_line.h"
 #include <string.h>
-#include "../../../libraries/lib.h"
+#include <fcntl.h>
 
 int main(void) {
     int fd = open("example.txt", O_RDONLY);

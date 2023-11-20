@@ -5,113 +5,101 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:41:25 by escura            #+#    #+#             */
-/*   Updated: 2023/11/20 14:52:33 by escura           ###   ########.fr       */
+/*   Created: 2021/10/05 09:58:54 by escura            #+#    #+#             */
+/*   Updated: 2023/11/20 17:39:27 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	found_newline(t_list *list)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	str = (char *)malloc(sizeof(*s) * (len + 1));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
+		i++;
+	}
+	str[j] = 0;
+	return (str);
+}
+
+int	ft_strlen(const char *str)
 {
 	int	i;
 
-	if (NULL == list)
-		return (0);
-	while (list)
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strchr(const char *s, int i)
+{
+	while (*s)
 	{
-		i = 0;
-		while (list->str_buf[i] && i < BUFFER_SIZE)
-		{
-			if (list->str_buf[i] == '\n')
-				return (1);
-			++i;
-		}
-		list = list->next;
+		if (*s == i)
+			return ((char *)s);
+		s++;
 	}
+	if (i == '\0')
+		return ((char *)s);
 	return (0);
 }
 
-t_list	*find_last_node(t_list *list)
+char	*ft_strdup(const char *s)
 {
-	if (NULL == list)
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	j = ft_strlen(s);
+	str = (char *)malloc(sizeof(*str) * (j + 1));
+	if (str == NULL)
 		return (NULL);
-	while (list->next)
-		list = list->next;
-	return (list);
+	while (i < j)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
 
-void	copy_str(t_list *list, char *str)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	k;
+	int		i;
+	int		j;
+	char	*str;
 
-	if (NULL == list)
-		return ;
-	k = 0;
-	while (list)
+	i = 0;
+	j = 0;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (str == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		i = 0;
-		while (list->str_buf[i])
-		{
-			if (list->str_buf[i] == '\n')
-			{
-				str[k++] = '\n';
-				str[k] = '\0';
-				return ;
-			}
-			str[k++] = list->str_buf[i++];
-		}
-		list = list->next;
+		str[i] = s1[i];
+		i++;
 	}
-	str[k] = '\0';
-}
-
-int	len_to_newline(t_list *list)
-{
-	int	i;
-	int	len;
-
-	if (NULL == list)
-		return (0);
-	len = 0;
-	while (list)
+	while (s2[j] != '\0')
 	{
-		i = 0;
-		while (list->str_buf[i])
-		{
-			if (list->str_buf[i] == '\n')
-			{
-				++len;
-				return (len);
-			}
-			++i;
-			++len;
-		}
-		list = list->next;
+		str[i + j] = s2[j];
+		j++;
 	}
-	return (len);
-}
-
-void	dealloc(t_list **list, t_list *clean_node, char *buf)
-{
-	t_list	*tmp;
-
-	if (NULL == *list)
-		return ;
-	while (*list)
-	{
-		tmp = (*list)->next;
-		free((*list)->str_buf);
-		free(*list);
-		*list = tmp;
-	}
-	*list = NULL;
-	if (clean_node->str_buf[0])
-		*list = clean_node;
-	else
-	{
-		free(buf);
-		free(clean_node);
-	}
+	str[i + j] = '\0';
+	return (str);
 }
