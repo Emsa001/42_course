@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:20:49 by escura            #+#    #+#             */
-/*   Updated: 2023/11/20 16:46:30 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/21 20:48:52 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1540,12 +1540,12 @@ int main(void)
 	// !check_ft_substr() && strcat(failed_functions, "ft_substr");
 	// !check_ft_strjoin() && strcat(failed_functions, "ft_strjoin");
 	// !check_ft_strtrim() && strcat(failed_functions, "ft_strtrim");
-	!check_ft_split() && strcat(failed_functions, "ft_split");
+	// !check_ft_split() && strcat(failed_functions, "ft_split");
 	// !check_ft_itoa() && strcat(failed_functions, "ft_itoa");
 	// !check_ft_strmapi() && strcat(failed_functions, "ft_strmapi");
 	// !check_ft_striteri() && strcat(failed_functions, "ft_striteri");
 
-	// check_ft_putchar_fd();
+	check_ft_putchar_fd();
 	// check_ft_putnbr_fd();
 	// check_ft_putstr_fd();
 	// check_ft_putendl_fd();

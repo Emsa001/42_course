@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 14:07:50 by escura            #+#    #+#             */
-/*   Updated: 2023/11/11 18:04:09 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/21 20:52:47 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,3 +16,4 @@ void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
+

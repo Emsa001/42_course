@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:45:32 by escura            #+#    #+#             */
-/*   Updated: 2023/11/21 16:13:54 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/21 21:15:59 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /*
 **
@@ -107,22 +107,22 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	char		*buffer;
-	static char	*total_buffer;
+	static char	*total_buffer[OPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	line = get_line(fd, buffer, total_buffer);
+	line = get_line(fd, buffer, total_buffer[fd]);
 	free(buffer);
 	buffer = NULL;
 	if (!line || read(fd, buffer, 0) < 0)
 	{
-		free(total_buffer);
-		total_buffer = NULL;
+		free(total_buffer[fd]);
+		total_buffer[fd] = NULL;
 		return (NULL);
 	}
-	total_buffer = remove_from_total(line);
+	total_buffer[fd] = remove_from_total(line);
 	return (line);
 }
