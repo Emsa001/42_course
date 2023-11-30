@@ -7,7 +7,7 @@ SOURCES = ${SRC_DIR}/ft_parse.c ${SRC_DIR}/ft_printf.c
 OBJECTS = ${OBJ_DIR}/ft_parse.o ${OBJ_DIR}/ft_printf.o
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 bonus: $(NAME)

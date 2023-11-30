@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:59:59 by escura            #+#    #+#             */
-/*   Updated: 2023/11/30 18:27:30 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/30 18:38:33 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_putnbr(int nb, char format)
 			num = (unsigned int)(-nb);
 		}
 	}
+
 	if (num >= 10)
 	{
 		counter += ft_putnbr(num / 10, format);
@@ -85,5 +86,5 @@ void	ft_putptr(void *ptr, int i, int *counter)
 		return ;
 	}
 	ft_putptr((void *)(d / 16), ++i, counter);
-	*counter += ft_putchar("0123456789abcdef"[d % 16]);
+	*counter += ft_putchar(HEXA[d % 16]);
 }

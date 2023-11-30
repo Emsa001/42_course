@@ -6,11 +6,24 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:21:57 by escura            #+#    #+#             */
-/*   Updated: 2023/11/30 18:26:51 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/30 18:49:08 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void ft_check_for_flags(const char *format, va_list args)
+{
+	// check for "# 0 - +" flags
+	while(*format == '#' || *format == '0' || *format == '-' || *format == '+')
+	{
+		// if (*format == '#')
+		// else if (*format == '0')
+		// else if (*format == '-')
+		// else if (*format == '+')
+		*format++;
+	}
+}
 
 int	ft_convert(const char *format, va_list args)
 {
@@ -22,6 +35,8 @@ int	ft_convert(const char *format, va_list args)
 		if (*format == '%')
 		{
 			format++;
+			ft_check_for_flags(format, args);
+
 			if (*format == 'c')
 				counter += ft_putchar(va_arg(args, int));
 			else if (*format == 's')
@@ -33,10 +48,10 @@ int	ft_convert(const char *format, va_list args)
 			else if (*format == 'u')
 				counter += ft_putnbr(va_arg(args, unsigned int), *format);
 			else if (*format == 'x')
-				ft_puthex(va_arg(args, unsigned int), "0123456789abcdef",
+				ft_puthex(va_arg(args, unsigned int), HEXA,
 					&counter, 0);
 			else if (*format == 'X')
-				ft_puthex(va_arg(args, unsigned int), "0123456789ABCDEF",
+				ft_puthex(va_arg(args, unsigned int), HEXA_CAP,
 					&counter, 0);
 			else if (*format == 'p')
 				ft_putptr(va_arg(args, void *), 0, &counter);

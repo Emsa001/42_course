@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:54:49 by escura            #+#    #+#             */
-/*   Updated: 2023/11/30 18:21:13 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/30 18:51:34 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void test_s(char *str){
 
 
 void test_d(int nb){
-    int return_ft = ft_printf("FT test_d: %d| %d",nb,nb);
+    int return_ft = ft_printf("FT test_d: %      d| %d",nb,nb);
     printf(" (%d)\n",return_ft);
-    int return_og = printf("OG test_d: %d| %d",nb,nb);
+    int return_og = printf("OG test_d: % +++-   -10d| %d",nb,nb);
     printf(" (%d)\n\n",return_og);
 }
 
@@ -126,7 +126,7 @@ int main()
     int return_ft;
     int return_og;
     
-
+    printf("|%100+-d|  \n",10);
 
     // int integerNumber = 42;
     // float floatNumber = 3.14159;
@@ -179,7 +179,7 @@ int main()
         // test_i(test_cases[i]);
         // test_u(test_cases[i]);
         // test_p(test_cases[i]);
-        test_x(test_cases[i]);
+        // test_x(test_cases[i]);
         // test_X(test_cases[i]);
     }
 
