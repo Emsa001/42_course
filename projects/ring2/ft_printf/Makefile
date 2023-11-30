@@ -2,11 +2,9 @@ NAME = libftprintf.a
 SRC_DIR = ./src
 OBJ_DIR = ./objs
 
-SOURCES = ${SRC_DIR}/ft_custom.c ${SRC_DIR}/ft_funcs.c \
-		  ${SRC_DIR}/ft_parse.c ${SRC_DIR}/ft_printf.c
+SOURCES = ${SRC_DIR}/ft_parse.c ${SRC_DIR}/ft_printf.c
 
-OBJECTS = ${OBJ_DIR}/ft_custom.o ${OBJ_DIR}/ft_funcs.o \
-		  ${OBJ_DIR}/ft_parse.o ${OBJ_DIR}/ft_printf.o
+OBJECTS = ${OBJ_DIR}/ft_parse.o ${OBJ_DIR}/ft_printf.o
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
