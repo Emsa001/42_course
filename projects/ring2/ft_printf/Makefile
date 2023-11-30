@@ -2,10 +2,10 @@ NAME = libftprintf.a
 SRC_DIR = ./src
 OBJ_DIR = ./objs
 
-SOURCES = ${SRC_DIR}/ft_custom.c ${SRC_DIR}/ft_funcs.c ${SRC_DIR}/ft_funcs_2.c \
+SOURCES = ${SRC_DIR}/ft_custom.c ${SRC_DIR}/ft_funcs.c \
 		  ${SRC_DIR}/ft_parse.c ${SRC_DIR}/ft_printf.c
 
-OBJECTS = ${OBJ_DIR}/ft_custom.o ${OBJ_DIR}/ft_funcs.o ${OBJ_DIR}/ft_funcs_2.o \
+OBJECTS = ${OBJ_DIR}/ft_custom.o ${OBJ_DIR}/ft_funcs.o \
 		  ${OBJ_DIR}/ft_parse.o ${OBJ_DIR}/ft_printf.o
 
 CC = cc
@@ -34,16 +34,16 @@ fclean: clean
 
 re: fclean all
 
-# t: test
-# n: norm
-# c: clean
+t: test
+n: norm
+c: clean
 
-# test:
-# 	make
-# 	clear
-# 	$(CC) $(SRC_DIR)/main.c -o ./my_program $(NAME) ../../libraries/lib.a && ./my_program
+test:
+	make
+	clear
+	$(CC) -w $(SRC_DIR)/main.c -o ./my_program $(NAME) ../../../libraries/lib.a && ./my_program
 
-# norm:
-# 	norminette $(SRC_DIR)/ft_*.c $(SRC_DIR)/ft_printf.h
+norm:
+	norminette $(SRC_DIR)/ft_*.c $(SRC_DIR)/ft_printf.h
 
 .PHONY: all clean fclean bonus re

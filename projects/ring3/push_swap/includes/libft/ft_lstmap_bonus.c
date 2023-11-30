@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:27:16 by escura            #+#    #+#             */
-/*   Updated: 2023/11/13 17:35:17 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/30 13:42:00 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	new_node = NULL;
 	while (lst != NULL)
 	{
-		new_node = ft_calloc(1, sizeof(t_list));
+		new_node = (t_list *)malloc(sizeof(t_list));
 		if (new_node == NULL)
 		{
 			ft_lstclear(&new_list, del);

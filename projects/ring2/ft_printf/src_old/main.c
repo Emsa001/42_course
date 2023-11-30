@@ -6,12 +6,12 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:54:49 by escura            #+#    #+#             */
-/*   Updated: 2023/11/30 18:21:13 by escura           ###   ########.fr       */
+/*   Updated: 2023/11/23 12:36:15 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "../../../../libraries/lib.h"
+#include "../../../libraries/lib.h"
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
@@ -39,75 +39,75 @@ void test_s(char *str){
     int return_og = printf(" OG test_s: %s|",str);
     printf(" (%d)\n\n",return_og);
 
-    // write_test(2);
-    // return_ft = ft_printf(" FT test_s: %50s|",str);
-    // printf(" (%d)\n",return_ft);
-    // write_test(2);
-    // return_og = printf(" OG test_s: %50s|",str);
-    // printf(" (%d)\n\n",return_og);
+    write_test(2);
+    return_ft = ft_printf(" FT test_s: %50s|",str);
+    printf(" (%d)\n",return_ft);
+    write_test(2);
+    return_og = printf(" OG test_s: %50s|",str);
+    printf(" (%d)\n\n",return_og);
 
-    // write_test(3);
-    // return_ft = ft_printf(" FT test_s: %-50s|",str);
-    // printf(" (%d)\n",return_ft);
-    // write_test(3);
-    // return_og = printf(" OG test_s: %-50s|",str);
-    // printf(" (%d)\n\n",return_og);
+    write_test(3);
+    return_ft = ft_printf(" FT test_s: %-50s|",str);
+    printf(" (%d)\n",return_ft);
+    write_test(3);
+    return_og = printf(" OG test_s: %-50s|",str);
+    printf(" (%d)\n\n",return_og);
 
-    // write_test(4);
-    // return_ft = ft_printf(" FT test_s: %050s|",str);
-    // printf(" (%d)\n",return_ft);
-    // write_test(4);
-    // return_og = printf(" OG test_s: %050s|",str);
-    // printf(" (%d)\n\n",return_og);
+    write_test(4);
+    return_ft = ft_printf(" FT test_s: %050s|",str);
+    printf(" (%d)\n",return_ft);
+    write_test(4);
+    return_og = printf(" OG test_s: %050s|",str);
+    printf(" (%d)\n\n",return_og);
 
-    // write_test(5);
-    // return_ft = ft_printf(" FT test_s: %0s|",str);
-    // printf(" (%d)\n",return_ft);
-    // write_test(5);
-    // return_og = printf(" OG test_s: %0s|",str);
-    // printf(" (%d)\n\n",return_og);
+    write_test(5);
+    return_ft = ft_printf(" FT test_s: %0s|",str);
+    printf(" (%d)\n",return_ft);
+    write_test(5);
+    return_og = printf(" OG test_s: %0s|",str);
+    printf(" (%d)\n\n",return_og);
 }
 
 
 void test_d(int nb){
-    int return_ft = ft_printf("FT test_d: %d| %d",nb,nb);
+    int return_ft = ft_printf("FT test_d: %12d| %d",nb,nb);
     printf(" (%d)\n",return_ft);
-    int return_og = printf("OG test_d: %d| %d",nb,nb);
+    int return_og = printf("OG test_d: %12d| %d",nb,nb);
     printf(" (%d)\n\n",return_og);
 }
 
 void test_i(int nb){
-    int return_ft = ft_printf("FT test_i: %i| %d",nb,nb);
+    int return_ft = ft_printf("FT test_i: %12i| %d",nb,nb);
     printf(" (%d)\n",return_ft);
-    int return_og = printf("OG test_i: %i| %d",nb,nb);
+    int return_og = printf("OG test_i: %12i| %d",nb,nb);
     printf(" (%d)\n\n",return_og);
 }
 
 void test_u(long int nb){
-    int return_ft = ft_printf("FT test_u: %u| %d",nb,nb);
+    int return_ft = ft_printf("FT test_u: %12u| %d",nb,nb);
     printf(" (%d)\n",return_ft);
-    int return_og = printf("OG test_u: %u| %d",nb,nb);
+    int return_og = printf("OG test_u: %12u| %d",nb,nb);
     printf(" (%d)\n\n",return_og);
 }
 
 void test_p(long int nb){
-    int return_ft = ft_printf("FT test_p: %p| %d",nb,nb);
+    int return_ft = ft_printf("FT test_p: %050p| %d",nb,nb);
     printf(" (%d)\n",return_ft);
-    int return_og = printf("OG test_p: %p| %d",nb,nb);
+    int return_og = printf("OG test_p: %050p| %d",nb,nb);
     printf(" (%d)\n\n",return_og);
 }
 
 void test_x(long int nb){
-    int return_ft = ft_printf("FT test_x: %x| %d",nb,nb);
+    int return_ft = ft_printf("FT test_x: %050x| %d",nb,nb);
     printf(" (%d)\n",return_ft);
-    int return_og = printf("OG test_x: %x| %d",nb,nb);
+    int return_og = printf("OG test_x: %050x| %d",nb,nb);
     printf(" (%d)\n\n",return_og);
 }
 
 void test_X(long int nb){
-    int return_ft = ft_printf("FT test_X: %X| %d",nb,nb);
+    int return_ft = ft_printf("FT test_X: %050X| %d",nb,nb);
     printf(" (%d)\n",return_ft);
-    int return_og = printf("OG test_X: %X| %d",nb,nb);
+    int return_og = printf("OG test_X: %050X| %d",nb,nb);
     printf(" (%d)\n\n",return_og);
 }
 
@@ -172,14 +172,14 @@ int main()
     // printf("Octal using %%i: %i\n", octalNum);
 
 
-    int test_cases[] = {0,-1,1,9,10,11,15,16,17,99,100,101,-9,-10,-11,-14,-15,-16,-99, NULL};
+    int test_cases[] = {0,-1,1,9,10,11,15,16,17,99,100,101,-9,-10,-11,-14,-15,-16,-99};
 
     for (size_t i = 0; i < sizeof(test_cases) / sizeof(test_cases[0]); i++) {
         // test_d(test_cases[i]);
         // test_i(test_cases[i]);
         // test_u(test_cases[i]);
         // test_p(test_cases[i]);
-        test_x(test_cases[i]);
+        // test_x(test_cases[i]);
         // test_X(test_cases[i]);
     }
 
@@ -187,7 +187,7 @@ int main()
 
     char *test_cases_s[] = {"Hello Worldasdadad pls work", "", "\0"};
     for (size_t i = 0; i < sizeof(test_cases_s) / sizeof(test_cases_s[0]); i++) {
-        // test_s(test_cases_s[i]);
+        test_s(test_cases_s[i]);
     }
 }
 

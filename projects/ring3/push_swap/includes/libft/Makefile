@@ -6,7 +6,7 @@
 #    By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 15:21:13 by ikhadem           #+#    #+#              #
-#    Updated: 2023/11/20 16:39:20 by escura           ###   ########.fr        #
+#    Updated: 2023/11/30 13:41:42 by escura           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJECTS = $(SOURCES:.c=.o)
 BOBJECTS = $(BSOURCES:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -std=c99
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
@@ -48,4 +48,4 @@ test:
 norm:
 	norminette ft_*.c libft.h
 
-.PHONY: all clean fclean re bonus
+.Phony: all clean fclean re test norm

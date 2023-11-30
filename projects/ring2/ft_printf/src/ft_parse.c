@@ -5,113 +5,85 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 11:56:35 by escura            #+#    #+#             */
-/*   Updated: 2023/11/16 16:33:21 by escura           ###   ########.fr       */
+/*   Created: 2023/11/30 13:59:59 by escura            #+#    #+#             */
+/*   Updated: 2023/11/30 18:27:30 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(char *str, int do_print)
+int	ft_putchar(char c)
 {
-	int	len;
+	write(1, &c, 1);
+	return (1);
+}
+
+int	ft_putstr(char *str)
+{
+	int	counter;
 
 	if (!str)
-		return (ft_putstr("(null)", do_print));
-	len = 0;
-	while (str[len])
+		return (ft_putstr("(null)"));
+	counter = 0;
+	while (*str)
 	{
-		ft_putchar(str[len], do_print);
-		len++;
+		counter += ft_putchar(*str);
+		str++;
 	}
-	return (len);
+	return (counter);
 }
 
-int	ft_putnbr(int n, int do_print)
+int	ft_putnbr(int nb, char format)
 {
-	long int	nb;
-	int			length;
+	int				counter;
+	unsigned int	num;
 
-	nb = n;
-	length = 0;
-	if (nb < 0)
-	{
-		nb = -nb;
-		length++;
-	}
-	if (nb <= 9)
-	{
-		ft_putchar(nb + '0', do_print);
-		length++;
-	}
+	counter = 0;
+	if (format == 'u')
+		num = (unsigned int)nb;
 	else
 	{
-		length += ft_putnbr(nb / 10, do_print);
-		length += ft_putnbr(nb % 10, do_print);
+		num = (unsigned int)nb;
+		if (nb < 0)
+		{
+			counter += ft_putchar('-');
+			num = (unsigned int)(-nb);
+		}
 	}
-	return (length);
-}
-
-int	ft_putunbr(unsigned int nb, int do_print)
-{
-	int	length;
-
-	length = 0;
-	if (nb <= 9)
+	if (num >= 10)
 	{
-		ft_putchar(nb + '0', do_print);
-		length++;
+		counter += ft_putnbr(num / 10, format);
+		counter += ft_putnbr(num % 10, format);
 	}
 	else
-	{
-		length += ft_putnbr(nb / 10, do_print);
-		length += ft_putnbr(nb % 10, do_print);
-	}
-	return (length);
+		counter += ft_putchar(num + '0');
+	return (counter);
 }
 
-int	ft_putptr(void *ptr, int do_print, int width)
+void	ft_puthex(unsigned int nb, char *hex, int *counter, int i)
 {
-	char		buffer[sizeof(void *) * 2 * 3];
-	uintptr_t	ptr_value;
-	int			shift;
-	size_t		index;
-
-	ptr_value = (uintptr_t)ptr;
-	buffer[0] = '0';
-	buffer[1] = 'x';
-	index = 2;
-	while (index < sizeof(void *) * 2 + 2)
+	if (nb == 0)
 	{
-		shift = (sizeof(void *) * 2 + 1 - index) * 4;
-		buffer[index++] = "0123456789abcdef"[(ptr_value >> shift) & 0xf];
+		if (i == 0)
+			*counter += ft_putchar('0');
+		return ;
 	}
-	buffer[index] = '\0';
-	ft_set_zeros(buffer, width);
-	return (ft_putstr(buffer, do_print));
+	ft_puthex(nb / 16, hex, counter, ++i);
+	*counter += ft_putchar(hex[nb % 16]);
 }
 
-int	ft_putx(unsigned int value, int capital, int do_print)
+void	ft_putptr(void *ptr, int i, int *counter)
 {
-	char	buffer[9];
-	int		index;
-	int		len;
+	unsigned long long	d;
 
-	index = 0;
-	buffer[index++] = "0123456789abcdef"[value % 16];
-	value /= 16;
-	while (value != 0)
+	d = (unsigned long long)ptr;
+	if (d == 0)
 	{
-		buffer[index++] = "0123456789abcdef"[value % 16];
-		value /= 16;
+		*counter += ft_putstr("0x");
+		if (i == 0)
+			*counter += ft_putstr("0");
+		return ;
 	}
-	len = index;
-	while (index > 0)
-	{
-		if (capital)
-			ft_putchar(ft_toupper(buffer[--index]), do_print);
-		else
-			ft_putchar(buffer[--index], do_print);
-	}
-	return (len);
+	ft_putptr((void *)(d / 16), ++i, counter);
+	*counter += ft_putchar("0123456789abcdef"[d % 16]);
 }
