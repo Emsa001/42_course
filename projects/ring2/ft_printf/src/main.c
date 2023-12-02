@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:54:49 by escura            #+#    #+#             */
-/*   Updated: 2023/11/30 18:51:34 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/02 18:26:02 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,16 +123,15 @@ void test_mix(){
 
 int main()
 {
-    int return_ft;
-    int return_og;
     
-    printf("|%100+-d|  \n",10);
+    int return_ft = ft_printf("ft:%10d 2020\n",42);
+    int return_og = printf("og:%10d 2020\n",42);
 
+    printf("%d == %d",return_ft,return_og);
     // int integerNumber = 42;
     // float floatNumber = 3.14159;
     // char *str = "Hello";
 
-    // // Using zero flag and field minimum width
     // return_ft = ft_printf("FT Integer: %-6d %12s %-12s", integerNumber,str,str);
     // printf(" (%d)\n",return_ft);
     // return_og = printf("OG Integer: %-6d %12s %-12s", integerNumber,str,str);

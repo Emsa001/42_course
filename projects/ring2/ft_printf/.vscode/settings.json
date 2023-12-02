@@ -2,6 +2,15 @@
     "files.associations": {
         "*.jsx": "javascriptreact",
         "stdio.h": "c",
-        "ft_printf.h": "c"
+        "ft_printf.h": "c",
+        "unistd.h": "c",
+        "limits.h": "c",
+        "ratio": "c",
+        "lib.h": "c",
+        "stdarg.h": "c",
+        "__bit_reference": "c",
+        "algorithm": "c",
+        "array": "c",
+        "ios": "c"
     }
 }
