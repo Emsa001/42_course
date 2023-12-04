@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:54:49 by escura            #+#    #+#             */
-/*   Updated: 2023/12/02 18:26:02 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/04 19:26:00 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void test_s(char *str){
 
 
 void test_d(int nb){
-    int return_ft = ft_printf("FT test_d: %      d| %d",nb,nb);
+    int return_ft = ft_printf("FT test_d: %d| %d",nb,nb);
     printf(" (%d)\n",return_ft);
-    int return_og = printf("OG test_d: % +++-   -10d| %d",nb,nb);
+    int return_og = printf("OG test_d: %d| %d",nb,nb);
     printf(" (%d)\n\n",return_og);
 }
 
@@ -123,11 +123,23 @@ void test_mix(){
 
 int main()
 {
-    
-    int return_ft = ft_printf("ft:%10d 2020\n",42);
-    int return_og = printf("og:%10d 2020\n",42);
+    char arg = '0';
+    ft_printf("ft: ");
+    int return_ft = ft_printf("!%62.24s!", "What do you want to debug today?");
+    ft_printf("\nog: ");
+    int return_og = printf("!%62.24s!", "What do you want to debug today?");
+    printf("\n");
 
     printf("%d == %d",return_ft,return_og);
+
+    /*
+    
+    29:     TEST(5, print(" %.s ", "-"));
+    32:     TEST(8, print(" %.1s %.2s %.3s %.4s ", " - ", "", "4", ""));
+    33:     TEST(9, print(" %.2s %.3s %.4s %.5s %.1s ", " - ", "", "4", "", "2 "));
+
+    */
+    
     // int integerNumber = 42;
     // float floatNumber = 3.14159;
     // char *str = "Hello";
@@ -189,4 +201,3 @@ int main()
         // test_s(test_cases_s[i]);
     }
 }
-
