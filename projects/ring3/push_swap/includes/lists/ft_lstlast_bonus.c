@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 14:54:55 by escura            #+#    #+#             */
-/*   Updated: 2023/11/12 15:00:03 by escura           ###   ########.fr       */
+/*   Created: 2023/11/12 15:26:04 by escura            #+#    #+#             */
+/*   Updated: 2023/12/05 15:17:55 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-int	ft_lstsize(t_list *lst)
+t_stack	*ft_lstlast(t_stack *lst)
 {
-	int		i;
-	t_list	*current;
-
-	i = 0;
-	current = lst;
-	while (current != NULL)
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
 	{
-		i++;
-		current = current->next;
+		lst = lst->next;
 	}
-	return (i);
+	return (lst);
 }

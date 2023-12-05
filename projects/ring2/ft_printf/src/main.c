@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:54:49 by escura            #+#    #+#             */
-/*   Updated: 2023/12/04 19:26:00 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/04 19:41:26 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,14 +125,16 @@ int main()
 {
     char arg = '0';
     ft_printf("ft: ");
-    int return_ft = ft_printf("!%62.24s!", "What do you want to debug today?");
+    int return_ft = ft_printf("!\\!/%210.43d\\!/!", -1);
     ft_printf("\nog: ");
-    int return_og = printf("!%62.24s!", "What do you want to debug today?");
+    int return_og = printf("!\\!/%210.43d\\!/!", -1);
     printf("\n");
 
     printf("%d == %d",return_ft,return_og);
 
     /*
+
+    \\!/%54.5d\\!/ 0
     
     29:     TEST(5, print(" %.s ", "-"));
     32:     TEST(8, print(" %.1s %.2s %.3s %.4s ", " - ", "", "4", ""));

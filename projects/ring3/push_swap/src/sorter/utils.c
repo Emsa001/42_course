@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 15:26:04 by escura            #+#    #+#             */
-/*   Updated: 2023/11/12 15:31:51 by escura           ###   ########.fr       */
+/*   Created: 2023/12/05 17:47:43 by escura            #+#    #+#             */
+/*   Updated: 2023/12/05 17:48:50 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/push_swap.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	find_min(t_stack *a)
 {
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
+	int	min;
+	int	min_index;
+	int	i;
+
+	min = INT_MAX;
+	min_index = 0;
+	i = 0;
+	while (a)
 	{
-		lst = lst->next;
+		if (a->value < min)
+		{
+			min = a->value;
+			min_index = i;
+		}
+		a = a->next;
+		i++;
 	}
-	return (lst);
+	return (min_index);
 }

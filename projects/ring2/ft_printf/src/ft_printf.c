@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:21:57 by escura            #+#    #+#             */
-/*   Updated: 2023/12/04 19:25:53 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/04 19:41:51 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	do_number(t_settings *settings)
 				ft_putchar('+', settings);
 		}
 	}
-	ft_putnbr(settings->content, settings);
+	if(settings->precision != 0 || settings->content != 0)
+		ft_putnbr(settings->content, settings);
 }
 
 void	ft_parse(va_list args, const char **format, t_settings *settings)
@@ -39,13 +40,19 @@ void	ft_parse(va_list args, const char **format, t_settings *settings)
 		settings->content = va_arg(args, void *);
 	if(**format == 's'){
 		if(settings->precision != -1){
-			if(settings->width > 0 && ft_strlen(settings->content) - settings->precision > 0 && settings->minus == 0)
+			if(settings->width > 0 && settings->precision > 0 && ft_strlen(settings->content) - settings->precision > 0 && settings->minus == 0)
 				settings->width += ft_strlen(settings->content) - settings->precision;
 			if (settings->precision == 0 )
 				settings->content = "";		
 		}
 		if(settings->content == NULL)
 			settings->content = "(null)";
+	}
+	else if(**format == 'd' || **format == 'i' || **format == 'u'){
+		if(settings->precision != -1)
+			settings->width -= settings->precision - get_digits((int)settings->content) + 1;
+		if(settings->precision == 0)
+			settings->width--;
 	}
 	if (settings->minus == 0 && settings->width > 0)
 		print_width(settings);

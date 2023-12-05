@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 16:12:14 by escura            #+#    #+#             */
-/*   Updated: 2023/11/13 17:18:37 by escura           ###   ########.fr       */
+/*   Created: 2023/11/12 14:23:18 by escura            #+#    #+#             */
+/*   Updated: 2023/12/05 15:17:44 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstadd_front(t_stack **lst, t_stack *new)
 {
-	t_list	*aux;
-
-	if (!*lst)
+	if (lst == NULL || new == NULL)
 		return ;
-	while (*lst)
-	{
-		aux = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = aux;
-	}
-	*lst = 0;
+	new->next = *lst;
+	*lst = new;
 }

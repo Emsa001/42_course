@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 15:45:45 by escura            #+#    #+#             */
-/*   Updated: 2023/11/12 16:42:00 by escura           ###   ########.fr       */
+/*   Created: 2023/12/05 16:01:56 by escura            #+#    #+#             */
+/*   Updated: 2023/12/05 19:05:45 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/push_swap.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	decide_sort(t_stack **a, t_stack **b)
 {
-	if (lst == NULL || del == NULL)
-		return ;
-	del(lst->content);
-	free(lst);
+	int	min_index;
+
+	if (ft_lstsize(*a) == 2)
+		two_nums(a);
+	else if (ft_lstsize(*a) == 3)
+		three_nums(a);
+	else if (ft_lstsize(*a) == 4)
+		four_nums(a, b);
+	else if (ft_lstsize(*a) == 5)
+		five_nums(a, b);
+	else if(ft_lstsize(*a) > 5)
+		sort_large(a, b);
 }

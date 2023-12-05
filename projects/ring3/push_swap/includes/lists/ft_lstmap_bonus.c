@@ -6,16 +6,16 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:27:16 by escura            #+#    #+#             */
-/*   Updated: 2023/11/30 13:42:00 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:17:56 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_stack	*ft_lstmap(t_stack *lst, int (*f)(int), void (*del)(int))
 {
-	t_list	*new_list;
-	t_list	*new_node;
+	t_stack	*new_list;
+	t_stack	*new_node;
 
 	if (lst == NULL || f == NULL || del == NULL)
 		return (NULL);
@@ -23,13 +23,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	new_node = NULL;
 	while (lst != NULL)
 	{
-		new_node = (t_list *)malloc(sizeof(t_list));
+		new_node = (t_stack *)malloc(sizeof(t_stack));
 		if (new_node == NULL)
 		{
 			ft_lstclear(&new_list, del);
 			return (NULL);
 		}
-		new_node->content = f(lst->content);
+		new_node->value = f(lst->value);
 		new_node->next = NULL;
 		ft_lstadd_back(&new_list, new_node);
 		lst = lst->next;

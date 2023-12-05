@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 16:19:56 by escura            #+#    #+#             */
-/*   Updated: 2023/11/12 16:36:44 by escura           ###   ########.fr       */
+/*   Created: 2023/11/12 15:45:45 by escura            #+#    #+#             */
+/*   Updated: 2023/12/05 15:17:46 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_lstdelone(t_stack *lst, void (*del)(int))
 {
-	if (lst == NULL || f == NULL)
+	if (lst == NULL || del == NULL)
 		return ;
-	while (lst != NULL)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+	del(lst->value);
+	free(lst);
 }
