@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:50:52 by escura            #+#    #+#             */
-/*   Updated: 2023/12/05 18:06:32 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/06 20:05:30 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_stack
 {
 	int				value;
 	struct s_stack	*next;
+	struct s_stack	*prev;
 }					t_stack;
 
 void				read_args(char **args, t_stack **a);
@@ -38,6 +39,8 @@ int					ft_lstsize(t_stack *lst);
 
 void				decide_sort(t_stack **a, t_stack **b);
 int					find_min(t_stack *a);
+int					find_max(t_stack *a);
+int					get_digits(int nb);
 
 void				two_nums(t_stack **a);
 void				three_nums(t_stack **a);
