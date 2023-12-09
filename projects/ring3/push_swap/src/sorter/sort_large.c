@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:06:03 by escura            #+#    #+#             */
-/*   Updated: 2023/12/06 20:23:07 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/09 16:59:45 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,43 +28,85 @@ rrr : rra and rrb at the same time.
 
 */
 
-// 87 487 781 100 101 0 1
+#include "../../includes/push_swap.h"
 
-int ft_pow(int base, int exp)
-{
-    int result = 1;
-    while (exp--)
-        result *= base;
-    return result;
+void print_sol(t_stack *a){
+    while(a){
+        printf("a: %d (%d)\n", (a)->value, (a)->push);
+        a = (a)->next;
+    }
 }
 
-void radix_sort(t_stack **a, t_stack **b)
-{
-    int digits = get_digits(find_max(*a));
-    printf("Digits: %d\n", digits);
+void max_sorted_seq(t_stack **a){
+    // nested loops
+    int start_from = (*a)->index;
+    int max_sorted = 0;
+    t_stack *tmp;
+    tmp = *a;
+    while(tmp)
+    {
+        t_stack *b;
+        b = (tmp)->next;
+        int current_sorted = 0;
+        int last = (tmp)->value;
+        while(b != NULL)
+        {
+            if(last <= b->value){
+                last = b->value;
+                current_sorted++;
+            }
+            b = b->next;
+        }
+        if(current_sorted > max_sorted)
+        {
+            max_sorted = current_sorted;
+            start_from = (tmp)->index;
+        }
 
-}
-
-void rotate_to_top(t_stack **stack, int index) {
-    int size = ft_lstsize(*stack);
-    int rotations = index < size / 2 ? index : size - index;
-    void (*rotate)(t_stack**, int) = index < size / 2 ? ra : rra;
+        tmp = (tmp)->next;
+    }
+    tmp = *a;
+    while(start_from > 0)
+    {
+        tmp->push = true;
+        tmp = tmp->next;
+        start_from--;
+    }
     
-    while (rotations--)
-        rotate(stack, 1);
+    max_sorted = 0;
+    while(tmp){
+        t_stack *b;
+        b = tmp->next;
+        int last = tmp->value;
+        while(b != NULL)
+        {
+            b->push = true;
+            if(last <= b->value){
+                last = b->value;
+                b->push = false;
+            }
+            b = b->next;
+        }
+        tmp = tmp->next;
+    }
 }
 
-void sort_large(t_stack **a, t_stack **b) {
-    bubble(a, b);
-    // quick_sort(a, b);
-    // radix_sort(a, b);
-    // int i = 0;
-    // while (*a) {
-    //     int min_index = find_min(*a);
-    //     rotate_to_top(a, min_index);
-    //     pb(a, b, 1);
-    // }
-    
-    // while (*b)
-    //     pa(a, b, 1);
+void	sort_large(t_stack **a, t_stack **b)
+{
+    max_sorted_seq(a);
+
+    t_stack *tmp = *a;
+    while(tmp->next != NULL){
+        if((tmp)->push == true)
+            pb(a, b);
+        else
+            ra(a);
+
+        if((tmp)->next == NULL)
+            break;
+        tmp = (tmp)->next;
+    }
+
+    //set a to first element
+    // print_sol(*a);
 }

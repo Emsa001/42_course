@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   sort_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 14:54:55 by escura            #+#    #+#             */
-/*   Updated: 2023/12/08 15:05:02 by escura           ###   ########.fr       */
+/*   Created: 2023/12/08 16:12:10 by escura            #+#    #+#             */
+/*   Updated: 2023/12/09 15:07:32 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../includes/push_swap.h"
 
-int	ft_lstsize(t_stack *lst)
+// make node with minimum value at the top  of the stack
+void rotate_to_min(t_stack **stack)
 {
-	int		i;
-	t_stack	*current;
+    t_stack *min_node;
 
-	i = 0;
-	current = lst;
-	while (current != NULL)
-	{
-		i++;
-		current = current->next;
-	}
-	return (i);
+    min_node = find_min(*stack);
+    int len = ft_lstsize(*stack);
+    while(stack != min_node)
+    {
+        if(len / 2 > min_node->index)
+            ra(stack);
+        else
+            rra(stack);
+    }
 }

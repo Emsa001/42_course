@@ -6,43 +6,46 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:47:43 by escura            #+#    #+#             */
-/*   Updated: 2023/12/06 20:05:43 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/09 13:44:38 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int	find_min(t_stack *a)
+t_stack	*find_min(t_stack *a)
 {
-	int	min;
-	int	i;
+	int		min;
+	t_stack	*lowest_node;
 
 	min = INT_MAX;
-	i = 0;
 	while (a)
 	{
 		if (a->value < min)
+		{
 			min = a->value;
-		i++;
+			lowest_node = a;
+		}
+		a = a->next;
 	}
-	return (min);
+	return (lowest_node);
 }
 
-int	find_max(t_stack *a)
+t_stack	*find_max(t_stack *a)
 {
-	int	max;
-	int	i;
+	int		max;
+	t_stack	*highest_node;
 
 	max = INT_MIN;
-	i = 0;
 	while (a)
 	{
 		if (a->value > max)
+		{
 			max = a->value;
+			highest_node = a;
+		}
 		a = a->next;
-		i++;
 	}
-	return (max);
+	return (highest_node);
 }
 
 int	get_digits(int nb)
@@ -60,4 +63,26 @@ int	get_digits(int nb)
 		digits++;
 	}
 	return (digits);
+}
+
+void	set_current_position(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	if (NULL == stack)
+		return ;
+	while (stack)
+	{
+		stack->index = i;
+		stack = stack->next;
+		++i;
+	}
+}
+
+
+void	init_nodes(t_stack *a, t_stack *b)
+{
+	set_current_position(a);
+	set_current_position(b);
 }

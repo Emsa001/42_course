@@ -6,15 +6,15 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:08:31 by escura            #+#    #+#             */
-/*   Updated: 2023/12/05 19:30:45 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/09 16:04:14 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	error(void)
+void	ft_error(char *msg)
 {
-	write(1, "Error\n", 6);
+	ft_putendl_fd(msg, 1);
 	exit(0);
 }
 
@@ -30,7 +30,7 @@ void	check_duplicates(t_stack *a)
 		while (tmp2)
 		{
 			if (tmp->value == tmp2->value)
-				error();
+				ft_error("Error");
 			tmp2 = tmp2->next;
 		}
 		tmp = tmp->next;
@@ -62,15 +62,15 @@ void	single_arg(char *arg, t_stack **a)
 			if (arg[i] == '-')
 			{
 				if (sign == -1)
-					error();
+					ft_error("Error");
 				sign = -1;
 				i++;
 			}
 			else if (!ft_isdigit(arg[i]))
-				error();
+				ft_error("Error");
 			num = num * 10 + arg[i] - '0';
 			if (num > INT_MAX)
-				error();
+				ft_error("Error");
 		}
 		if (ft_isdigit(arg[i]) && (is_space(arg[i + 1]) || i + 1 == len))
 		{
@@ -80,7 +80,7 @@ void	single_arg(char *arg, t_stack **a)
 		}
 		if ((is_space(arg[i]) && !ft_isdigit(arg[i - 1])) || is_space(arg[len
 				- 1]))
-			error();
+			ft_error("Error");
 		i++;
 	}
 }
@@ -104,15 +104,15 @@ void	multi_args(char **args, t_stack **a)
 			if (args[i][j] == '-')
 			{
 				if (sign == -1)
-					error();
+					ft_error("Error");
 				sign = -1;
 				j++;
 			}
 			else if (!ft_isdigit(args[i][j]))
-				error();
+				ft_error("Error");
 			num = num * 10 + args[i][j] - '0';
 			if (num > INT_MAX)
-				error();
+				ft_error("Error");
 			j++;
 		}
 		ft_lstadd_back(a, ft_lstnew((int)num * sign));

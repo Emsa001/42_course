@@ -31,6 +31,8 @@
         "system_error": "c",
         "tuple": "c",
         "type_traits": "c",
-        "locale": "c"
+        "locale": "c",
+        "stdio.h": "c",
+        "stack": "c"
     }
 }

@@ -6,13 +6,14 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:45:11 by escura            #+#    #+#             */
-/*   Updated: 2023/12/06 18:13:07 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/09 13:44:17 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void show_results(t_stack *a, t_stack *b){
+void show_results(t_stack *a, t_stack *b)
+{
 	printf("Stack A: ");
 	while (a)
 	{
@@ -36,6 +37,7 @@ int	main(int nb, char **args)
 
 	// printf("\nOperations: \n");
 	read_args(args, &a);
+	set_current_position(a);
 	decide_sort(&a, &b);
 
 	printf("\nResults: \n");

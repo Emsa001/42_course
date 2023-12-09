@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:56 by escura            #+#    #+#             */
-/*   Updated: 2023/12/06 18:18:51 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/09 13:25:25 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	decide_sort(t_stack **a, t_stack **b)
 {
 	int	min_index;
+	int	len;
 
-	if (ft_lstsize(*a) == 2)
-		two_nums(a);
-	else if (ft_lstsize(*a) == 3)
-		three_nums(a);
-	else if (ft_lstsize(*a) == 4)
+	len = ft_lstsize(*a);
+	if(len <= 3)
+		tiny_sort(a);
+	else if (len == 4)
 		four_nums(a, b);
-	else if (ft_lstsize(*a) == 5)
+	else if (len == 5)
 		five_nums(a, b);
-	else if(ft_lstsize(*a) > 5)
-		sort_large(a, b);
+	else
+		sort_large(a,b);
 }

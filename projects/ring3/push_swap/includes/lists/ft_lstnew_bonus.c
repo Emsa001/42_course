@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:07:25 by escura            #+#    #+#             */
-/*   Updated: 2023/12/05 15:17:58 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/09 15:59:00 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,8 @@ t_stack	*ft_lstnew(int value)
 		return (NULL);
 	new_node->value = value;
 	new_node->next = NULL;
+	new_node->prev = NULL;
+	new_node->push = false;
+	new_node->index = 0;
 	return (new_node);
 }

@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:33:56 by escura            #+#    #+#             */
-/*   Updated: 2023/12/05 15:17:39 by escura           ###   ########.fr       */
+/*   Updated: 2023/12/09 15:59:21 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 		return ;
 	}
 	while (current->next != NULL)
-	{
 		current = current->next;
-	}
 	current->next = new;
+	new->prev = current;
 }

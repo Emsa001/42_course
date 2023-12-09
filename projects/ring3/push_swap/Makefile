@@ -6,7 +6,7 @@
 #    By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 13:49:31 by escura            #+#    #+#              #
-#    Updated: 2023/12/06 20:06:22 by escura           ###   ########.fr        #
+#    Updated: 2023/12/09 15:45:26 by escura           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ re: fclean all
 
 t: 
 	make
-	./$(NAME) 0 984 1 28 92 2 55
+	clear
+	./$(NAME) 7 6 2 1 3 9 8 5 4 0
 	
 .PHONY: all clean fclean re
